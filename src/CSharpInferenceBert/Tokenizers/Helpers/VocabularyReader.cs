@@ -5,15 +5,11 @@ namespace BERTTokenizers.Helpers
 {
     public class VocabularyReader
     {
-        public static List<string> ReadFile(string filsename)
+        public static List<string> ReadFile(string filename)
         {
-            string longString = "";
-            string filename =  "C:/repos/AndroidBert/AndroidBert/AndroidBert/Model/Vocabularies/Vocab.txt";
+          
             var result = new List<string>();
-            string 
-            if (!File.Exists(@filename)) 
-            {
-            }
+
             using (var reader = new StreamReader(filename))
             {
                 string line;
@@ -26,7 +22,6 @@ namespace BERTTokenizers.Helpers
                     }
                 }
             }
-
             return result;
         }
     }

@@ -7,7 +7,7 @@ namespace BERTTokenizers.Base
 {
     public abstract class UncasedTokenizer : TokenizerBase
     {
-        protected UncasedTokenizer(string vocabularyFilePath) : base(vocabularyFilePath)
+        protected  UncasedTokenizer(string vocabularyFilePath) : base(vocabularyFilePath)
         {
         }
 

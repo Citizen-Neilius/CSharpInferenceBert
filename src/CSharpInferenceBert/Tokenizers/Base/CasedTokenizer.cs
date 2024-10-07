@@ -15,4 +15,5 @@ namespace BERTTokenizers.Base
                 .SelectMany(o => o.SplitAndKeep(".,;:\\/?!#$%()=+-*\"'–_`<>&^@{}[]|~'".ToArray()));
         }
     }
+
 }

@@ -21,13 +21,38 @@ namespace AndroidBert
     {
         public void Go()
         {
+
+            bool done = false;
+            Console.WriteLine("Enter the text");
+            string? context = Console.ReadLine();
+            Console.WriteLine("\nWhat would you like to ask?");
+            string? question = Console.ReadLine();
+            AskAway(context, question);
+            while(!done)
+            {
+                Console.WriteLine("\n\nAny further questions?");
+                string? redo = Console.ReadLine();
+                if (redo == "y")
+                {
+                    Console.WriteLine("\nWhat now?");
+                    question = Console.ReadLine();
+                    AskAway(question, context);
+                }
+                else
+                {
+                    Environment.Exit(0);
+                }
+            }
+        }
+
+        private static void AskAway(string context, string question)
+        {
             try
             {
-                var sentence = "{\"question\": \"Where is Bob Dylan From?\", \"context\": \"Bob Dylan is from Duluth, Minnesota and is an American singer-songwriter\"}";
-                Console.WriteLine(sentence);
+                var sentence = string.Format("\"question\": \"{0}\", \"context\": \"{1}\"", question,context);
 
                 // Create Tokenizer and tokenize the sentence.
-                var tokenizer = new BertBaseTokenizer();
+                var tokenizer = new BertUncasedBaseTokenizer();
 
                 // Get the sentence tokens.
                 var tokens = tokenizer.Tokenize(sentence);
@@ -44,7 +69,7 @@ namespace AndroidBert
                     TypeIds = encoded.Select(t => t.TokenTypeIds).ToArray(),
                 };
                 // Get path to model to create inference session.
-                var modelPath = $@"{AppDomain.CurrentDomain.BaseDirectory}\Model\model.onnx";
+                var modelPath = $@"C:\Workspace\Models\bert-large-uncased-whole-word-masking-finetuned-squad\bert-large-uncased-whole-word-masking-finetuned-squad.onnx";
                 //var modelPath = @"C:\code\bert-nlp-csharp\BertNlpTest\BertNlpTest\bert-large-uncased-finetuned-qa.onnx";
 
                 using var runOptions = new RunOptions();
@@ -106,7 +131,7 @@ namespace AndroidBert
                 Console.WriteLine(String.Join(" ", predictedTokens));
 
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex);
             }

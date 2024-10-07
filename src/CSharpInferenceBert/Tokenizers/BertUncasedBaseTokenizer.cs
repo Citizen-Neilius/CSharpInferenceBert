@@ -4,7 +4,7 @@ namespace BERTTokenizers
 {
     public class BertUncasedBaseTokenizer : UncasedTokenizer
     {
-        public BertUncasedBaseTokenizer() : base("./Vocabularies/base_uncased.txt")
+        public BertUncasedBaseTokenizer() : base($@"C:\Workspace\Models\bert-large-uncased-whole-word-masking-finetuned-squad\vocab.txt")
         {
         }
     }
